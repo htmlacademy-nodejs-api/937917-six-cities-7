@@ -3,7 +3,7 @@ import { readFileSync } from 'node:fs';
 import { FileReader } from './file-reader.interface.js';
 import { City, HousingType, Location, RentOffer, User } from '../../types/index.js';
 
-import { convertStrToBoolean } from '../../utils/convert.js';
+import { convertStrToBoolean } from '../../helpers/convert.js';
 
 export class TSVFileReader implements FileReader {
   private rawData = '';
