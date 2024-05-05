@@ -1,9 +1,9 @@
 import { readFileSync } from 'node:fs';
 
 import { FileReader } from './file-reader.interface.js';
-import { City, HousingType, Location, RentOffer, User, UserRole } from '../../types/index.js';
+import { City, HousingType, Location, RentOffer, User } from '../../types/index.js';
 
-import { strToBoolean } from '../../utils/convert.js';
+import { convertStrToBoolean } from '../../utils/convert.js';
 
 export class TSVFileReader implements FileReader {
   private rawData = '';
@@ -57,21 +57,21 @@ export class TSVFileReader implements FileReader {
       city: this.parseCity(cityName, cityLocation),
       previewImage,
       images: this.parseStrArray(images),
-      isPremium: strToBoolean(isPremium),
-      isFavorite: strToBoolean(isFavorite),
+      isPremium: convertStrToBoolean(isPremium),
+      isFavorite: convertStrToBoolean(isFavorite),
       rating: +rating,
-      housingType: HousingType[housingType as 'apartment' | 'room' | 'hotel' | 'house'],
+      housingType: housingType as HousingType,
       roomCount: +roomCount,
       guestCount: +guestCount,
       price: +price,
       facilities: this.parseStrArray(facilities),
-      owner: this.parseOwner({
+      owner: {
         name: ownerName,
         email: ownerEmail,
         avatar: ownerAvatar,
         password: ownerPassword,
         role: ownerRole
-      }),
+      } as User,
       location: this.parseLocation(location)
     };
   }
@@ -89,28 +89,6 @@ export class TSVFileReader implements FileReader {
 
   private parseStrArray(str: string): string[] {
     return str.split(';');
-  }
-
-  private parseOwner({
-    name,
-    email,
-    avatar,
-    password,
-    role
-  } : {
-    name: string,
-    email: string,
-    avatar: string,
-    password: string,
-    role: string
-  }): User {
-    return {
-      name,
-      email,
-      avatar,
-      password,
-      role: UserRole[role as 'basic' | 'pro']
-    };
   }
 
   public read(): void {
