@@ -3,7 +3,7 @@ import got from 'got';
 import { Command } from './command.interface.js';
 import { MockServerData } from '../../shared/types/index.js';
 import { TSVRentOfferGenerator } from '../../shared/libs/rent-offer-generator/index.js';
-import { getErrorMessage } from '../../shared/helpers/error.js';
+import { getErrorMessage } from '../../shared/helpers/index.js';
 import { TSVFileWriter } from '../../shared/libs/file-writer/index.js';
 
 export class GenerateCommand implements Command {
