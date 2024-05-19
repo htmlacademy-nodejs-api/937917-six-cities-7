@@ -1,0 +1,163 @@
+{
+  "api": {
+    "titles": [
+      "View of the tower",
+      "Medieval castle",
+      "View of the Grand Place",
+      "National Maritime Museum",
+      "View of the Alster Lake",
+      "The Rhine embankment"
+    ],
+    "descriptions": [
+      "What would Paris be without its symbolic Eiffel Tower? Built by Gustave Eiffel to commemorate the centenary of the French Revolution, it is presented at the Exposition Universelle in Paris in 1889. 324 meters high, it is one of the most visited monuments in the world with nearly 7 million visitors a year.",
+      "Augustusburg Palace in Brühl is one of the more famous sites located in the Cologne area, making it a very popular day trip from Cologne. Sometimes called the Versailles of Germany, it was once the palace of Prince Bishop Elector Clemens August of Bavaria. Today, it is one of the best preserved examples of German Rococo architecture, which is why it has UNESCO World Heritage Status.",
+      "The Grand Place is the main square of Brussels, and it is easily one of the city's best attractions. Quaint cobblestones fill the ground and incredible gold-trimmed buildings surround the square. The most famous building in the Grand Place is the magnificent Town Hall that was built in the early 15th Century. The architecture and historical significance of the Grand Place is very impressive, and the spot has been named a UNESCO World Heritage Site.",
+      "This museum takes you back through 500 years of Dutch maritime history, including the Dutch Golden age. It also covers the present day of this country long dependent on dykes. You will get the chance to visit the replica of the old Dutch East India Company ship, 'Amsterdam'. The collection includes paintings, model ships, weaponry, and maps.",
+      "Germany's Alster Lake is located in the center of Hamburg, like a pearl, inlaid in the city's picturesque, more than 1,000 years ago flowing through Hamburg's Alster River, through a low-lying grass converging with the Elbe River, with the passage of the years, this grass gradually submerged, Form today's Lake Ulster.",
+      "The Rhine embankment is very suitable for a walk around Dusseldorf. The river runs through most of the city. An unforgettable view. It's a great place to walk. There are many cafes and restaurants"
+    ],
+    "cities": [
+      {
+        "name": "Paris",
+        "location": {
+          "latitude": 48.85661,
+          "longitude": 2.351499
+        }
+      },
+      {
+        "name": "Cologne",
+        "location": {
+          "latitude": 50.938361,
+          "longitude": 6.959974
+        }
+      },
+      {
+        "name": "Brussels",
+        "location": {
+          "latitude": 50.846557,
+          "longitude": 4.351697
+        }
+      },
+      {
+        "name": "Amsterdam",
+        "location": {
+          "latitude": 52.370216,
+          "longitude": 4.895168
+        }
+      },
+      {
+        "name": "Hamburg",
+        "location": {
+          "latitude": 53.550341,
+          "longitude": 10.000654
+        }
+      },
+      {
+        "name": "Dusseldorf",
+        "location": {
+          "latitude": 51.225402,
+          "longitude": 6.776314
+        }
+      }
+    ],
+    "previewImages": [
+      "offer-preview-image-01.jpg",
+      "offer-preview-image-02.jpg",
+      "offer-preview-image-03.jpg",
+      "offer-preview-image-04.jpg",
+      "offer-preview-image-05.jpg",
+      "offer-preview-image-06.jpg",
+      "offer-preview-image-07.jpg",
+      "offer-preview-image-08.jpg",
+      "offer-preview-image-09.jpg",
+      "offer-preview-image-10.jpg",
+      "offer-preview-image-11.jpg",
+      "offer-preview-image-12.jpg"
+    ],
+    "images": [
+      "offer-image-01.jpg",
+      "offer-image-02.jpg",
+      "offer-image-03.jpg",
+      "offer-image-04.jpg",
+      "offer-image-05.jpg",
+      "offer-image-06.jpg",
+      "offer-image-07.jpg",
+      "offer-image-08.jpg",
+      "offer-image-09.jpg",
+      "offer-image-10.jpg",
+      "offer-image-11.jpg",
+      "offer-image-12.jpg",
+      "offer-image-13.jpg",
+      "offer-image-14.jpg",
+      "offer-image-15.jpg",
+      "offer-image-16.jpg",
+      "offer-image-17.jpg",
+      "offer-image-18.jpg",
+      "offer-image-19.jpg",
+      "offer-image-20.jpg",
+      "offer-image-21.jpg",
+      "offer-image-22.jpg",
+      "offer-image-23.jpg",
+      "offer-image-24.jpg"
+    ],
+    "housingTypes": [
+      "apartment",
+      "hotel",
+      "house",
+      "room"
+    ],
+    "facilities": [
+      "Air conditioning",
+      "Baby seat",
+      "Breakfast",
+      "Fridge",
+      "Laptop friendly workspace",
+      "Towels",
+      "Washer"
+    ],
+    "users": [
+      {
+        "name": "John",
+        "email": "johny@example.com",
+        "avatar": "",
+        "password": "P#P*?XlihY.t",
+        "role": "basic"
+      },
+      {
+        "name": "David",
+        "email": "david@example.com",
+        "avatar": "david-avatar.png",
+        "password": "$N+Xx]Q7WdK;",
+        "role": "basic"
+      },
+      {
+        "name": "Anthony",
+        "email": "anthony@example.com",
+        "avatar": "",
+        "password": ",q#v6iNblx",
+        "role": "pro"
+      },
+      {
+        "name": "Thomas",
+        "email": "tom@example.com",
+        "avatar": "tom-avatar.jpg",
+        "password": "bgZXf<K_%:HA",
+        "role": "basic"
+      },
+      {
+        "name": "Jenny",
+        "email": "jen@example.com",
+        "avatar": "",
+        "password": "<~RhQf_Qo(,f",
+        "role": "pro"
+      },
+      {
+        "name": "George",
+        "email": "george@example.com",
+        "avatar": "",
+        "password": "E2eKePPuJN",
+        "role": "basic"
+      }
+    ]
+  }
+}

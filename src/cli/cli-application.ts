@@ -1,4 +1,4 @@
-import { log } from '../shared/utils/log.js';
+import { log } from '../shared/helpers/log.js';
 
 import { Command } from './commands/command.interface.js';
 import { CommandParser } from './command-parser.js';

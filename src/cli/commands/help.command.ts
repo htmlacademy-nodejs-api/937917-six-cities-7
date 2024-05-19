@@ -1,4 +1,4 @@
-import { log } from '../../shared/utils/log.js';
+import { log } from '../../shared/helpers/log.js';
 
 import { Command } from './command.interface.js';
 
@@ -15,9 +15,10 @@ export class HelpCommand implements Command {
         {cyan main.cli.js} {yellow --<command> [--arguments]}
 
       COMMANDS
-        {yellow --version}                   # output of version number
-        {yellow --help }                     # print this text
-        {yellow --import <path>}             # import data from TSV
+        {yellow --version}                     # output of version number
+        {yellow --help }                       # print this text
+        {yellow --import <path>}               # import data from TSV
+        {yellow --generate <n> <path> <url>}   # generates an arbitrary amount of mock data
     `);
   }
 }
