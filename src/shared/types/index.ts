@@ -8,3 +8,4 @@ export { UserRole } from './user-role.type.js';
 
 export { MockServerData } from './mock-server-data.type.js';
 export { Component } from './component.enum.js';
+export { MongoURIOptions } from './mongo-uri-options.type.js';
