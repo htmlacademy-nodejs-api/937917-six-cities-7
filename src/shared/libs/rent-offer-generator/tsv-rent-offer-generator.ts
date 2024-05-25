@@ -6,7 +6,7 @@ import {
   getRandomDate,
   getRandomItemsSet,
   generateRandomBoolean
-} from '../../helpers/random.js';
+} from '../../helpers/index.js';
 
 import {
   IMAGES_COUNT,
