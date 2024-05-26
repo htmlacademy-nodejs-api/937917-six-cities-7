@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs';
 
 import { FileReader } from './file-reader.interface.js';
-import { City, HousingType, Location, RentOffer, User } from '../../types/index.js';
+import { City, HousingType, Location, Offer, User } from '../../types/index.js';
 
 import { convertStrToBoolean } from '../../helpers/index.js';
 
@@ -18,14 +18,14 @@ export class TSVFileReader implements FileReader {
     }
   }
 
-  private parseRawDataToRentOffers(): RentOffer[] {
+  private parseRawDataToOffers(): Offer[] {
     return this.rawData
       .split('\n')
       .filter((row) => row.trim().length > 0)
-      .map((line) => this.parseLineToRentOffer(line));
+      .map((line) => this.parseLineToOffer(line));
   }
 
-  private parseLineToRentOffer(line: string): RentOffer {
+  private parseLineToOffer(line: string): Offer {
     const [
       title,
       description,
@@ -42,11 +42,11 @@ export class TSVFileReader implements FileReader {
       guestCount,
       price,
       facilities,
-      ownerName,
-      ownerEmail,
-      ownerRole,
-      ownerPassword,
-      ownerAvatar,
+      userName,
+      userEmail,
+      userRole,
+      userPassword,
+      userAvatar,
       location
     ] = line.split('\t').map((item) => item.trim());
 
@@ -65,12 +65,12 @@ export class TSVFileReader implements FileReader {
       guestCount: +guestCount,
       price: +price,
       facilities: this.parseStrArray(facilities),
-      owner: {
-        name: ownerName,
-        email: ownerEmail,
-        avatar: ownerAvatar,
-        password: ownerPassword,
-        role: ownerRole
+      user: {
+        name: userName,
+        email: userEmail,
+        avatar: userAvatar,
+        password: userPassword,
+        role: userRole
       } as User,
       location: this.parseLocation(location)
     };
@@ -95,8 +95,8 @@ export class TSVFileReader implements FileReader {
     this.rawData = readFileSync(this.filename, { encoding: 'utf-8' });
   }
 
-  public toArray(): RentOffer[] {
+  public toArray(): Offer[] {
     this.validateRawData();
-    return this.parseRawDataToRentOffers();
+    return this.parseRawDataToOffers();
   }
 }
