@@ -11,7 +11,7 @@ export class RestApplication {
   constructor(
     @inject(Component.Logger) private readonly logger: Logger,
     @inject(Component.Config) private readonly config: Config<RestSchema>,
-    @inject(Component.DatabaseClient) private readonly databaseClient: DatabaseClient
+    @inject(Component.DatabaseClient) private readonly databaseClient: DatabaseClient,
   ) {}
 
   private async initDb() {

@@ -81,8 +81,8 @@ export class TSVOfferGenerator implements OfferGenerator {
 
   private generateRandomLocation(sourceLocation: Location): string {
     const { latitude, longitude } = sourceLocation;
-    const newLatitude = generateRandomValue(Math.floor(latitude), Math.floor(latitude) + 1, 6);
-    const newLongitude = generateRandomValue(Math.floor(longitude), Math.floor(longitude) + 1, 6);
+    const newLatitude = generateRandomValue(Math.floor(+latitude), Math.floor(+latitude) + 1, 6);
+    const newLongitude = generateRandomValue(Math.floor(+longitude), Math.floor(+longitude) + 1, 6);
 
     return `${newLatitude};${newLongitude}`;
   }

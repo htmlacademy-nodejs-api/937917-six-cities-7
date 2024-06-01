@@ -1,6 +1,6 @@
-import { defaultClasses, getModelForClass, prop, modelOptions } from '@typegoose/typegoose';
+import {defaultClasses, getModelForClass, modelOptions, prop, Severity} from '@typegoose/typegoose';
 
-import { City, Location } from '../../types/index.js';
+import {City, Location} from '../../types/index.js';
 
 // eslint-disable-next-line @typescript-eslint/no-unsafe-declaration-merging
 export interface CityEntity extends defaultClasses.Base {}
@@ -15,7 +15,7 @@ export class CityEntity implements City {
   @prop({ required: true })
   public name: string;
 
-  @prop({ required: true })
+  @prop({ required: true, unique: true, allowMixed: Severity.ALLOW })
   public location: Location;
 }
 

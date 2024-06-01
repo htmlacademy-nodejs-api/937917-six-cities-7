@@ -25,6 +25,7 @@ export class DefaultOfferService implements OfferService {
   public findById(offerId: string): Promise<DocumentType<OfferEntity> | null> {
     return this.offerModel
       .findById(offerId)
-      .populate(['userId']);
+      .populate(['cityId', 'userId'])
+      .exec();
   }
 }

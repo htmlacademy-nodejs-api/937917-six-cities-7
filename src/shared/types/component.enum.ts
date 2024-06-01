@@ -9,4 +9,6 @@ export const Component = {
   OfferModel: Symbol.for('OfferModel'),
   CityService: Symbol.for('CityService'),
   CityModel: Symbol.for('CityModel'),
+  FavoriteOfferService: Symbol.for('FavoriteOfferService'),
+  FavoriteOfferModel: Symbol.for('FavoriteOfferModel')
 } as const;

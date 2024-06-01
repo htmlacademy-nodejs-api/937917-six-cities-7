@@ -15,7 +15,11 @@ export class DefaultCityService implements CityService {
   ) {}
 
   public async create(dto: CreateCityDto): Promise<DocumentType<CityEntity>> {
-    const result = await this.cityModel.create(dto);
+    const result = await this.cityModel.findOneAndUpdate(
+      { ...dto },
+      {},
+      { upsert: true, new: true }
+    );
 
     this.logger.info(`New city created: ${dto.name}`);
 

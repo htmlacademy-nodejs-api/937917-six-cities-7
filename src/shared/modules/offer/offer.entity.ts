@@ -1,4 +1,4 @@
-import { defaultClasses, getModelForClass, prop, modelOptions, Ref } from '@typegoose/typegoose';
+import {defaultClasses, getModelForClass, prop, modelOptions, Ref, Severity } from '@typegoose/typegoose';
 
 import { HousingType, Location } from '../../types/index.js';
 import { CityEntity } from '../city/index.js';
@@ -34,14 +34,11 @@ export class OfferEntity extends defaultClasses.TimeStamps {
   @prop({ required: true })
   public previewImage!: string;
 
-  @prop({ required: true })
+  @prop({ required: true, allowMixed: Severity.ALLOW })
   public images!: string[];
 
   @prop({ required: true, default: false })
   public isPremium!: boolean;
-
-  @prop({ required: false, default: false })
-  public isFavorite!: boolean;
 
   @prop({ required: true, default: 0 })
   public rating!: number;
@@ -62,7 +59,7 @@ export class OfferEntity extends defaultClasses.TimeStamps {
   @prop({ required: true })
   public price!: number;
 
-  @prop({ required: true })
+  @prop({ required: true, allowMixed: Severity.ALLOW })
   public facilities!: string[];
 
   @prop({
@@ -71,7 +68,7 @@ export class OfferEntity extends defaultClasses.TimeStamps {
   })
   public userId!: Ref<UserEntity>;
 
-  @prop({ required: true })
+  @prop({ required: true, allowMixed: Severity.ALLOW })
   public location!: Location;
 }
 
