@@ -3,7 +3,7 @@ import { Location } from './location.type.js';
 import { HousingType } from './housing-type.enum.js';
 import { User } from './user.type.js';
 
-export type RentOffer = {
+export type Offer = {
   title: string;
   description: string;
   publishedAt: Date;
@@ -18,6 +18,6 @@ export type RentOffer = {
   guestCount: number;
   price: number;
   facilities: string[];
-  owner: User;
+  user: User;
   location: Location;
 }

@@ -1,31 +1,21 @@
-import { readFileSync } from 'node:fs';
+import EventEmitter from 'node:events';
+import { createReadStream } from 'node:fs';
 
 import { FileReader } from './file-reader.interface.js';
-import { City, HousingType, Location, RentOffer, User } from '../../types/index.js';
+import { City, HousingType, Location, Offer, User } from '../../types/index.js';
 
 import { convertStrToBoolean } from '../../helpers/index.js';
 
-export class TSVFileReader implements FileReader {
-  private rawData = '';
+export class TSVFileReader extends EventEmitter implements FileReader {
+  private CHUNK_SIZE = 16384; // 16KB
 
   constructor(
     private readonly filename: string
-  ) {}
-
-  private validateRawData(): void {
-    if (!this.rawData) {
-      throw new Error('File was not read');
-    }
+  ) {
+    super();
   }
 
-  private parseRawDataToRentOffers(): RentOffer[] {
-    return this.rawData
-      .split('\n')
-      .filter((row) => row.trim().length > 0)
-      .map((line) => this.parseLineToRentOffer(line));
-  }
-
-  private parseLineToRentOffer(line: string): RentOffer {
+  private parseLineToOffer(line: string): Offer {
     const [
       title,
       description,
@@ -42,11 +32,11 @@ export class TSVFileReader implements FileReader {
       guestCount,
       price,
       facilities,
-      ownerName,
-      ownerEmail,
-      ownerRole,
-      ownerPassword,
-      ownerAvatar,
+      userName,
+      userEmail,
+      userRole,
+      userPassword,
+      userAvatar,
       location
     ] = line.split('\t').map((item) => item.trim());
 
@@ -65,12 +55,12 @@ export class TSVFileReader implements FileReader {
       guestCount: +guestCount,
       price: +price,
       facilities: this.parseStrArray(facilities),
-      owner: {
-        name: ownerName,
-        email: ownerEmail,
-        avatar: ownerAvatar,
-        password: ownerPassword,
-        role: ownerRole
+      user: {
+        name: userName,
+        email: userEmail,
+        avatar: userAvatar,
+        password: userPassword,
+        role: userRole
       } as User,
       location: this.parseLocation(location)
     };
@@ -83,7 +73,7 @@ export class TSVFileReader implements FileReader {
   }
 
   private parseLocation(location: string): Location {
-    const [latitude, longitude] = this.parseStrArray(location).map((prop) => +prop);
+    const [latitude, longitude] = this.parseStrArray(location).map((prop) => prop);
     return { latitude, longitude };
   }
 
@@ -91,12 +81,32 @@ export class TSVFileReader implements FileReader {
     return str.split(';');
   }
 
-  public read(): void {
-    this.rawData = readFileSync(this.filename, { encoding: 'utf-8' });
-  }
+  public async read(): Promise<void> {
+    const readStream = createReadStream(this.filename, {
+      highWaterMark: this.CHUNK_SIZE,
+      encoding: 'utf-8',
+    });
 
-  public toArray(): RentOffer[] {
-    this.validateRawData();
-    return this.parseRawDataToRentOffers();
+    let remainingData = '';
+    let nextLinePosition = -1;
+    let importedRowCount = 0;
+
+    for await (const chunk of readStream) {
+      remainingData += chunk.toString();
+
+      while ((nextLinePosition = remainingData.indexOf('\n')) >= 0) {
+        const completeRow = remainingData.slice(0, nextLinePosition + 1);
+        remainingData = remainingData.slice(++nextLinePosition);
+        importedRowCount++;
+
+        const parsedOffer = this.parseLineToOffer(completeRow);
+
+        await new Promise((resolve) => {
+          this.emit('line', parsedOffer, resolve);
+        });
+      }
+    }
+
+    this.emit('end', importedRowCount);
   }
 }

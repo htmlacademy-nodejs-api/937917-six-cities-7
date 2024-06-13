@@ -15,10 +15,10 @@ export class HelpCommand implements Command {
         {cyan main.cli.js} {yellow --<command> [--arguments]}
 
       COMMANDS
-        {yellow --version}                     # output of version number
-        {yellow --help }                       # print this text
-        {yellow --import <path>}               # import data from TSV
-        {yellow --generate <n> <path> <url>}   # generates an arbitrary amount of mock data
+        {yellow --version}                                                  # output of version number
+        {yellow --help }                                                    # print this text
+        {yellow --import <path> <login> <password> <host> <dbname> <salt>}  # import data from TSV
+        {yellow --generate <n> <path> <url>}                                # generates an arbitrary amount of mock data
     `);
   }
 }

@@ -1,4 +1,4 @@
-import { RentOfferGenerator } from './rent-offer-generator.interface.js';
+import { OfferGenerator } from './offer-generator.interface.js';
 import { MockServerData, Location, City, User } from '../../types/index.js';
 import {
   generateRandomValue,
@@ -24,13 +24,13 @@ import {
   MAX_FACILITIES_COUNT
 } from './utils.js';
 
-export class TSVRentOfferGenerator implements RentOfferGenerator {
+export class TSVOfferGenerator implements OfferGenerator {
   constructor(private readonly mockData: MockServerData) {}
 
   public generate(): string {
     const facilitiesCount = generateRandomValue(MIN_FACILITIES_COUNT, MAX_FACILITIES_COUNT);
     const city: City = getRandomItem(this.mockData.cities);
-    const owner: User = getRandomItem(this.mockData.users);
+    const user: User = getRandomItem(this.mockData.users);
 
     const title = getRandomItem(this.mockData.titles);
     const description = getRandomItem(this.mockData.descriptions);
@@ -47,11 +47,11 @@ export class TSVRentOfferGenerator implements RentOfferGenerator {
     const guestCount = generateRandomValue(MIN_GUEST_COUNT, MAX_GUEST_COUNT);
     const price = generateRandomValue(MIN_PRICE, MAX_PRICE);
     const facilities = getRandomItemsSet(this.mockData.facilities, facilitiesCount).join(';');
-    const ownerName = owner.name;
-    const ownerEmail = owner.email;
-    const ownerRole = owner.role;
-    const ownerPassword = owner.password;
-    const ownerAvatar = owner.avatar;
+    const userName = user.name;
+    const userEmail = user.email;
+    const userRole = user.role;
+    const userPassword = user.password;
+    const userAvatar = user.avatar;
     const location = this.generateRandomLocation(city.location);
 
     return [
@@ -70,19 +70,19 @@ export class TSVRentOfferGenerator implements RentOfferGenerator {
       guestCount,
       price,
       facilities,
-      ownerName,
-      ownerEmail,
-      ownerRole,
-      ownerPassword,
-      ownerAvatar,
+      userName,
+      userEmail,
+      userRole,
+      userPassword,
+      userAvatar,
       location
     ].join('\t');
   }
 
   private generateRandomLocation(sourceLocation: Location): string {
     const { latitude, longitude } = sourceLocation;
-    const newLatitude = generateRandomValue(Math.floor(latitude), Math.floor(latitude) + 1, 6);
-    const newLongitude = generateRandomValue(Math.floor(longitude), Math.floor(longitude) + 1, 6);
+    const newLatitude = generateRandomValue(Math.floor(+latitude), Math.floor(+latitude) + 1, 6);
+    const newLongitude = generateRandomValue(Math.floor(+longitude), Math.floor(+longitude) + 1, 6);
 
     return `${newLatitude};${newLongitude}`;
   }

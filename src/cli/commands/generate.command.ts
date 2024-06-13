@@ -2,7 +2,7 @@ import got from 'got';
 
 import { Command } from './command.interface.js';
 import { MockServerData } from '../../shared/types/index.js';
-import { TSVRentOfferGenerator } from '../../shared/libs/rent-offer-generator/index.js';
+import { TSVOfferGenerator } from '../../shared/libs/offer-generator/index.js';
 import { getErrorMessage } from '../../shared/helpers/index.js';
 import { TSVFileWriter } from '../../shared/libs/file-writer/index.js';
 
@@ -18,11 +18,11 @@ export class GenerateCommand implements Command {
   }
 
   private async write(filepath: string, offerCount: number) {
-    const tsvRentOfferGenerator = new TSVRentOfferGenerator(this.initialData);
+    const tsvOfferGenerator = new TSVOfferGenerator(this.initialData);
     const tsvFileWriter = new TSVFileWriter(filepath);
 
     for (let i = 0; i < offerCount; i++) {
-      await tsvFileWriter.write(tsvRentOfferGenerator.generate());
+      await tsvFileWriter.write(tsvOfferGenerator.generate());
     }
   }
 
